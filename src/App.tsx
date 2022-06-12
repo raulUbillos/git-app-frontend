@@ -1,10 +1,10 @@
 import React from 'react';
-import Repository from './pages/Repository'
+import PublicRouting from './routes/PublicRouting';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Repository name='Backend' owner='raulUbillos' repository='git-app-backend'></Repository>
+      <PublicRouting/>
     </div>
   );
 }

@@ -1,18 +1,11 @@
-import Head from "../../layouts/Head";
+import NavigablePage from '../../layouts/NavigablePage'
 import IProps from "./IProps";
 
-
-const navigation = [
-  { name: 'Backend Repo', action: ()=> {},current:() => true },
-  { name: 'Frontend Repo', action: ()=> {},current:() => false }
-]
 
 const Repository = ({name,owner,repository}:IProps): JSX.Element => {
   return (
     <>
-      <Head repositories={navigation}/>
-      <div className="min-h-full">
-
+      <NavigablePage>
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
@@ -27,7 +20,7 @@ const Repository = ({name,owner,repository}:IProps): JSX.Element => {
             {/* /End replace */}
           </div>
         </main>
-      </div>
+      </NavigablePage>
     </>
   )
 }

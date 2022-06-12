@@ -1,11 +1,18 @@
 import { Disclosure } from "@headlessui/react";
 import IProps from "./IProps";
+import {NavLink, useLocation} from 'react-router-dom';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 const Head = ({repositories}:IProps):JSX.Element => {
+    const location = useLocation();
+
+    const currentLocation = location.pathname;
+
+    const isCurrentRoute = (href:string) => currentLocation === href;
+    
     return <Disclosure as="nav" className="bg-gray-800">
     {({ open }) => (
       <>
@@ -15,19 +22,19 @@ const Head = ({repositories}:IProps):JSX.Element => {
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   {repositories.map((item) => (
-                    <button
+                    <NavLink
                       key={item.name}
-                      onClick={item.action}
+                      to={item.href}
                       className={classNames(
-                        item.current()
+                        isCurrentRoute(item.href)
                           ? 'bg-gray-900 text-white'
                           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'px-3 py-2 rounded-md text-sm font-medium'
                       )}
-                      aria-current={item.current() ? 'page' : undefined}
+                      aria-current={isCurrentRoute(item.href) ? 'page' : undefined}
                     >
                       {item.name}
-                    </button>
+                    </NavLink>
                   ))}
                 </div>
               </div>
@@ -38,18 +45,17 @@ const Head = ({repositories}:IProps):JSX.Element => {
         <Disclosure.Panel className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {repositories.map((item) => (
-              <Disclosure.Button
+              <NavLink
                 key={item.name}
-                as="a"
-                onClick={()=>item.action()}
+                to={item.href}
                 className={classNames(
-                  item.current() ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                  isCurrentRoute(item.href) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                   'block px-3 py-2 rounded-md text-base font-medium'
                 )}
-                aria-current={item.current() ? 'page' : undefined}
+                aria-current={isCurrentRoute(item.href) ? 'page' : undefined}
               >
                 {item.name}
-              </Disclosure.Button>
+              </NavLink>
             ))}
           </div>
         </Disclosure.Panel>
