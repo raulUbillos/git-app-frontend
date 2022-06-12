@@ -143,10 +143,10 @@ const Repository = ({name,owner,repository}:IProps): JSX.Element => {
           </div>
         </header>
         <main>
-          <div className="max-w overflow-auto mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="max-w bg-gray-200 overflow-auto mx-auto py-6 sm:px-6 lg:px-8">
             {
-              MOCKED_COMMITS.map((item,index) => {
-                return <div className='mb-6'>
+              MOCKED_COMMITS.map((item) => {
+                return <div key={item.code} className='mb-6'>
                         <Commit {...item}/>
                        </div>
               })
