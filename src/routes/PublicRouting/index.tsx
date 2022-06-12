@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
-import Repository from '../../pages/Repository'
+import Repository from 'pages/Repository'
 
 const PublicRouting = () => {
 
