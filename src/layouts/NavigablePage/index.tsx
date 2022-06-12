@@ -1,14 +1,14 @@
 import React from "react";
-import Head from "../Head";
+import Head from "layouts/Head";
 import IProps from "./IProps";
 const navigation = [
-    { name: 'Backend Repo', href:'/git-app-backend' },
-    { name: 'Frontend Repo', href:'/git-app-frontend' }
+    { name: 'Backend', href:'/git-app-backend' },
+    { name: 'Frontend', href:'/git-app-frontend' }
   ]
 const NavigablePage = ({children}:IProps) => {
     return <>
       <Head repositories={navigation}/>
-      <div className="min-h-full">
+      <div className="min-h-full overflow-hidden">
         {children}
       </div>
     </>

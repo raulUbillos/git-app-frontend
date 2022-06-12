@@ -13,52 +13,34 @@ const Head = ({repositories}:IProps):JSX.Element => {
 
     const isCurrentRoute = (href:string) => currentLocation === href;
     
-    return <Disclosure as="nav" className="bg-gray-800">
+    return <Disclosure as="nav" className="bg-white">
     {({ open }) => (
       <>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+              <div className="md:block">
+                <div className="flex items-baseline space-x-4">
                   {repositories.map((item) => (
-                    <NavLink
-                      key={item.name}
-                      to={item.href}
-                      className={classNames(
-                        isCurrentRoute(item.href)
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'px-3 py-2 rounded-md text-sm font-medium'
-                      )}
-                      aria-current={isCurrentRoute(item.href) ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </NavLink>
+                      <NavLink
+                        key={item.name}
+                        to={item.href}
+                        className={classNames(
+                          isCurrentRoute(item.href)
+                            ? 'border-b-solid border-b-black border-b-2'
+                            : ' hover:border-b-solid hover:border-b-black hover:border-b-2',
+                          'text-black h-full px-3 py-2 rounded-md text-lg font-medium'
+                        )}
+                        aria-current={isCurrentRoute(item.href) ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </NavLink>
                   ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <Disclosure.Panel className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {repositories.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.href}
-                className={classNames(
-                  isCurrentRoute(item.href) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'block px-3 py-2 rounded-md text-base font-medium'
-                )}
-                aria-current={isCurrentRoute(item.href) ? 'page' : undefined}
-              >
-                {item.name}
-              </NavLink>
-            ))}
-          </div>
-        </Disclosure.Panel>
       </>
     )}
   </Disclosure>
