@@ -147,6 +147,7 @@ const Repository = ({name,owner,repository}:IProps): JSX.Element => {
             {
               MOCKED_COMMITS.map((item) => {
                 return <div key={item.code} className='mb-6'>
+
                         <Commit {...item}/>
                        </div>
               })
