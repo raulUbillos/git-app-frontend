@@ -8,7 +8,7 @@ const navigation = [
 const NavigablePage = ({children}:IProps) => {
     return <>
       <Head repositories={navigation}/>
-      <div className="min-h-full overflow-hidden">
+      <div className="min-h-full ">
         {children}
       </div>
     </>
