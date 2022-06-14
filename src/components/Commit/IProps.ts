@@ -1,3 +1,4 @@
+
 export default interface IProps {
     code: string;
     dateAuthored: string;
@@ -13,4 +14,6 @@ export default interface IProps {
       avatarUrl?: string;
     };
     message: string;
+    repository: string;
+    owner: string;
 }

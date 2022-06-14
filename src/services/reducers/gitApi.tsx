@@ -7,7 +7,7 @@ export const GitApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_API_HOST}),
     endpoints: (builder) => ({
         getCommitHistory: builder.query<GitCommitHistory[], {owner: string, repository:string}>({
-            query:({owner, repository}) => `commits?owner=${owner}&repository=${repository}`
+            query:({owner, repository}) => `commits?owner=${owner}&repository=${repository}`,
         }),
         getCommit: builder.query<GitCommit, {owner: string, repository:string, commit:string}>({
             query:({owner, repository, commit}) => `commits/${commit}?owner=${owner}&repository=${repository}`
@@ -15,4 +15,9 @@ export const GitApi = createApi({
     })
 })
 
-export const {useGetCommitHistoryQuery, useGetCommitQuery} = GitApi
+export const {
+    useGetCommitHistoryQuery, 
+    useGetCommitQuery, 
+    useLazyGetCommitHistoryQuery, 
+    useLazyGetCommitQuery
+} = GitApi
