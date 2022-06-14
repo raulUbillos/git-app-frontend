@@ -1,8 +1,18 @@
+import useDetails from "hooks/useDetails";
+import {  useEffect } from "react";
 import IProps from "./IProps";
 
 const Commit = (props:IProps) => {
+    
+    const {detailComponent,getCommitDetails} = useDetails();
+
+    useEffect(() => {
+        getCommitDetails(props.owner, props.repository, props.code)
+    }, [getCommitDetails,props.owner, props.repository, props.code])
+
+
     return <>
-        <div className="max-w flex flex-col bg-white rounded overflow-hidden shadow-lg">
+        <div className="max-w flex flex-col bg-white rounded overflow-hidden shadow-lg mb-2">
             <div className="px-6 py-2">
                 <div className="font-bold text-xl mb-2 pb-2 border-b-2">{props.message}</div>
             </div>
@@ -29,6 +39,11 @@ const Commit = (props:IProps) => {
             </div>
             <div className="pl-6 pb-2 flex-row">
                 <p className="text-sm text-gray-600">Date Commited: {new Date(Date.parse(props.dateCommited)).toDateString()}</p>
+            </div>
+            <div className="flex flex-col items-center">
+                    {
+                        detailComponent
+                    }
             </div>
         </div>
     </>
